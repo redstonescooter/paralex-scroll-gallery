@@ -23,7 +23,7 @@ class ScrollWatcher{
         });
     }
     watchScroll(ev,time,target){
-        // console.log(ev,time);
+        // console.log(ev,time); 
         var previous_state = this.previous_state;
         var timestamp = ev.timeStamp;
         var duration = timestamp - previous_state.timestamp;
