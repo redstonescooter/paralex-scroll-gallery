@@ -33,6 +33,7 @@ class ScrollWatcher{
             var previous_x = previous_state.x;
             var previous_y = previous_state.y;
             previous_state={
+                ...previous_state,
                 y:target.scrollTop,
                 x:target.scrollLeft,
                 delta_x:target.scrollLeft-previous_x,
@@ -44,6 +45,7 @@ class ScrollWatcher{
             }
         }else{
             previous_state={
+                ...previous_state,
                 y:target.scrollTop,
                 x:target.scrollLeft,
                 delta_x:0,
