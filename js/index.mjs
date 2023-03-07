@@ -108,6 +108,10 @@ function content_load(ev){
     
     var myWatcher = new ScrollWatcher();
     myWatcher.log();
+    myWatcher.new(document.getElementsByClassName("scroll_test")[0],1000);
+
+    console.log(document.getElementsByClassName("scroll_test")[0].scrollTop);
+    console.log(document.scrollLeft);
 
     let gallery_observer = new IntersectionObserver(
     (entries,observer)=>{observer_fn(entries,observer)}, options);
