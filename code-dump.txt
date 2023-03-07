@@ -1,0 +1,66 @@
+window.scrollTo(500,window.scrollY)
+---
+first backup before testing REMOVING EVENT LISTENER
+
+
+// var counter =0;
+let observer_fn=function(entries,observer,counter){
+    console.log("fired");
+        entries.forEach((entry,index)=>{
+            console.log(Date.now() ,":",entry);
+        });
+        counter++;
+        if(counter%2!=0){
+            //disable Y scroll
+            //instead equally transform gallery to the left
+            //if the right of gallery was at the length of window => enable Y scroll
+            let scroll_x = window.scrollX;
+            let scroll_y = window.scrollY;
+            // var scroll_counter =0;
+            function Scroll_X(ev,scroll_counter){
+                scroll_counter++;
+                if (scroll_counter>=3){
+                window.scroll(window.scrollX+1,window.scrollY);
+                console.log(scroll_x,scroll_y);
+                scroll_counter=0;
+                }
+            }
+            function temp(ev,arg){
+                console.log(arg);
+            }
+            document.addEventListener("scroll",(ev)=>{temp(ev,"arg")});
+            setTimeout(()=>{
+                document.removeEventListener("scroll",(ev)=>{temp(ev,"arg")})
+            },3000)
+        }else{
+            document.removeEventListener("scroll",(ev)=>{temp(ev,"arg")})
+            //disable Y scroll
+            //instead equally transform gallery to the right
+            //if the left of gallery was at 0 => enable Y scroll
+        }
+    }
+document.addEventListener("DOMContentLoaded",content_load);
+function content_load(ev){
+    console.log("loaded");
+    let options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: [0,1,0]
+    }
+    
+    let gallery_observer = new IntersectionObserver(
+    (entries,observer)=>{observer_fn(entries,observer,0)}, options);
+    let gallery = document.getElementsByClassName("gallery")[0];
+    let wrapper = document.querySelector(".wrapper");
+    gallery_observer.observe(wrapper);
+}
+
+---
+"scrollX+:",window.scrollX+ body.offsetWidth^2/body.scrollWidth ,"scrollX+2:",window.scrollX + window.innerWidth -17);
+
+        if(window.scrollY + window.innerHeight -17 >= height){
+            console.log(height , "reached end Y");
+        }
+        if(window.scrollX + window.innerWidth -17 >= html.scrollWidth){ 
+            console.log(width , "reached end X");
+        }
