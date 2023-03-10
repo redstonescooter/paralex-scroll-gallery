@@ -27,12 +27,13 @@ class ScrollWatcher{
         var previous_state = this.previous_state;
         var timestamp = ev.timeStamp;
         var duration = timestamp - previous_state.timestamp;
+        console.log(duration , time);
         if(duration<time){
             var acceleration_x = (target.scrollLeft - previous_state.x)/(duration/1000); // pixel per seconds
             var acceleration_y = (target.scrollTop - previous_state.y)/(duration/1000);
             var previous_x = previous_state.x;
             var previous_y = previous_state.y;
-            previous_state={
+            this.previous_state={
                 ...previous_state,
                 y:target.scrollTop,
                 x:target.scrollLeft,
@@ -44,7 +45,7 @@ class ScrollWatcher{
                 acceleration_y:acceleration_y
             }
         }else{
-            previous_state={
+            this.previous_state={
                 ...previous_state,
                 y:target.scrollTop,
                 x:target.scrollLeft,

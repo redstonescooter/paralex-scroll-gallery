@@ -64,3 +64,11 @@ function content_load(ev){
         if(window.scrollX + window.innerWidth -17 >= html.scrollWidth){ 
             console.log(width , "reached end X");
         }
+---
+    var myWatcher = new ScrollWatcher();
+    myWatcher.log();
+    myWatcher.new(document.getElementsByClassName("scroll_test")[0],1000);
+
+    console.log(document.getElementsByClassName("scroll_test")[0].scrollTop);
+    console.log(document.documentElement.scrollLeft);
+---
